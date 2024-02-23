@@ -28,6 +28,8 @@ function Board({ xIsNext, squares, onPlay }) {
   let status;
   if (winner) {
     status = "Congratulations, the winner is " + winner;
+  } else if (squares.every((square) => square !== null)) {
+    status = "The game is a draw!";
   } else {
     status = (xIsNext ? "X" : "O") + " is next to play!";
   }
@@ -79,7 +81,7 @@ export default function game() {
         description = "You are currently on move #" + (move + 1);
         break;
       case 9:
-        description = "Go to game start";
+        description = "Reset game";
         break;
       default:
         description = "Go to move #" + (move + 1);

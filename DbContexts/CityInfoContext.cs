@@ -3,9 +3,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CityInfo.API.DbContexts
 {
+    // CityInfoContext inherits from DbContext, which is a part of Entity Framework Core
+    // It serves as a bridge between the domain classes and the database.
     public class CityInfoContext : DbContext
     {
         public DbSet<City> Cities { get; set; }
+
         public DbSet<PointOfInterest> PointsOfInterest { get; set; }
 
         public CityInfoContext(DbContextOptions<CityInfoContext> options) : base(options)
@@ -15,6 +18,7 @@ namespace CityInfo.API.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<City>().HasData(
                 new City("New York City")
                 {
